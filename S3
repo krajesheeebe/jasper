@@ -1,0 +1,103 @@
+Steps for Streaming Multipart Upload
+1. Initiate a Multipart Upload
+Begin by creating a multipart upload session using the S3 API.
+
+python
+Copy code
+import boto3
+
+s3 = boto3.client("s3")
+
+def initiate_multipart_upload(bucket, key):
+    response = s3.create_multipart_upload(Bucket=bucket, Key=key)
+    return response['UploadId']
+2. Upload Parts as Streams
+Read your data in chunks and upload each chunk as a part. Use the upload_part API to stream each chunk directly to S3.
+
+python
+Copy code
+def upload_part(bucket, key, upload_id, part_number, data_stream):
+    response = s3.upload_part(
+        Bucket=bucket,
+        Key=key,
+        PartNumber=part_number,
+        UploadId=upload_id,
+        Body=data_stream
+    )
+    return response['ETag']
+3. Complete the Multipart Upload
+After all parts are uploaded, finalize the upload session by combining the parts.
+
+python
+Copy code
+def complete_multipart_upload(bucket, key, upload_id, parts):
+    response = s3.complete_multipart_upload(
+        Bucket=bucket,
+        Key=key,
+        UploadId=upload_id,
+        MultipartUpload={'Parts': parts}
+    )
+    return response
+Each part should have the format:
+
+python
+Copy code
+{'PartNumber': part_number, 'ETag': etag}
+4. Handle Streaming with Chunked Data
+Stream data from your source (e.g., MongoDB) and write each chunk as a part.
+
+python
+Copy code
+def stream_to_s3_multipart(bucket, key, chunk_generator):
+    upload_id = initiate_multipart_upload(bucket, key)
+    parts = []
+    part_number = 1
+
+    try:
+        for chunk in chunk_generator:
+            # Stream the chunk to S3
+            etag = upload_part(bucket, key, upload_id, part_number, chunk)
+            parts.append({'PartNumber': part_number, 'ETag': etag})
+            part_number += 1
+
+        # Complete the upload
+        complete_multipart_upload(bucket, key, upload_id, parts)
+        print("Multipart upload completed successfully!")
+    except Exception as e:
+        # Abort the upload if something goes wrong
+        s3.abort_multipart_upload(Bucket=bucket, Key=key, UploadId=upload_id)
+        print("Multipart upload aborted due to an error:", e)
+        raise
+Example Chunk Generator
+Generate data chunks dynamically from your MongoDB cursor or another data source:
+
+python
+Copy code
+def chunk_generator_from_mongo(collection, chunk_size):
+    buffer = []
+    for document in collection.find({}, batch_size=100):
+        buffer.append(document)
+        if len(buffer) >= chunk_size:
+            yield serialize_to_json(buffer)
+            buffer = []
+    if buffer:  # Send any remaining data
+        yield serialize_to_json(buffer)
+
+def serialize_to_json(data):
+    import json
+    return json.dumps(data).encode('utf-8')
+Key Benefits of Multipart Upload with Streaming
+Low Memory Usage: Each chunk is uploaded immediately without accumulating large files in memory.
+Resilience: If the upload fails, only a single part needs to be retried.
+Parallelism: You can upload parts in parallel for better performance.
+Would you like assistance implementing this in your project?
+
+
+
+
+
+
+
+
+
+
