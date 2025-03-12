@@ -1,70 +1,75 @@
 import com.aspose.pdf.*;
 
-import java.io.FileOutputStream;
-
 public class PdfTemplateGenerator {
     public static void main(String[] args) {
         // Create a new PDF document
         Document pdfDocument = new Document();
+
+        // Enable tagging by initializing TaggedContent
+        TaggedContent taggedContent = new TaggedContent(pdfDocument);
+        pdfDocument.setTaggedContent(taggedContent);
+
+        // Set the document title and language for accessibility
+        taggedContent.setTitle("Banking Form");
+        taggedContent.setLanguage("en-US");
+
+        // Add a new page
         Page page = pdfDocument.getPages().add();
 
-        // Enable tagging for accessibility (WCAG compliance)
-        pdfDocument.setTagged(com.aspose.pdf.Tagged.TagType.Tagged);
+        // Add a heading (H1)
+        StructureElement heading1 = new StructureElement(taggedContent, StandardTags.H1);
+        heading1.setText("Banking Form");
+        taggedContent.getRootElement().appendChild(heading1);
 
-        // Add a heading
-        TextFragment title = new TextFragment("Banking Form");
-        title.getTextState().setFontSize(18);
-        title.getTextState().setFontStyle(FontStyles.Bold);
-        page.getParagraphs().add(title);
+        // Add a paragraph
+        StructureElement paragraph = new StructureElement(taggedContent, StandardTags.P);
+        paragraph.setText("Please fill in the required details before submitting the form.");
+        taggedContent.getRootElement().appendChild(paragraph);
 
-        // Add an image
+        // Add an image with alt text
         Image image = new Image();
-        image.setFile("src/main/resources/bank-logo.png");  // Replace with actual path
+        image.setFile("src/main/resources/bank-logo.png"); // Replace with actual image path
         page.getParagraphs().add(image);
 
-        // Add an ordered list
-        TextFragment olTitle = new TextFragment("\nRequired Documents:");
-        olTitle.getTextState().setFontStyle(FontStyles.Bold);
-        page.getParagraphs().add(olTitle);
-        ListSection orderedList = new ListSection(true, 1);
-        orderedList.getListItems().add(new ListItem("Government-issued ID"));
-        orderedList.getListItems().add(new ListItem("Proof of Address"));
-        orderedList.getListItems().add(new ListItem("Recent Bank Statement"));
-        page.getParagraphs().add(orderedList);
+        StructureElement figure = new StructureElement(taggedContent, StandardTags.Figure);
+        figure.setAlternativeText("Bank Logo");
+        taggedContent.getRootElement().appendChild(figure);
 
-        // Add an unordered list
-        TextFragment ulTitle = new TextFragment("\nAvailable Account Types:");
-        ulTitle.getTextState().setFontStyle(FontStyles.Bold);
-        page.getParagraphs().add(ulTitle);
-        ListSection unorderedList = new ListSection(false);
-        unorderedList.getListItems().add(new ListItem("Savings Account"));
-        unorderedList.getListItems().add(new ListItem("Current Account"));
-        unorderedList.getListItems().add(new ListItem("Fixed Deposit"));
-        page.getParagraphs().add(unorderedList);
+        // Add an unordered list of account types
+        StructureElement list = new StructureElement(taggedContent, StandardTags.L);
+        taggedContent.getRootElement().appendChild(list);
 
-        // Add checkboxes for agreement section
-        FormEditor formEditor = new FormEditor(pdfDocument);
-        CheckBoxField checkBox = new CheckBoxField(page, new Rectangle(100, 550, 120, 570));
+        StructureElement listItem1 = new StructureElement(taggedContent, StandardTags.LI);
+        listItem1.setText("Savings Account");
+        list.appendChild(listItem1);
+
+        StructureElement listItem2 = new StructureElement(taggedContent, StandardTags.LI);
+        listItem2.setText("Current Account");
+        list.appendChild(listItem2);
+
+        // Add a checkbox field
+        CheckBoxField checkBox = new CheckBoxField(page, new Rectangle(100, 600, 120, 620));
         checkBox.setPartialName("agreeTerms");
-        page.getAnnotations().add(checkBox);
+        pdfDocument.getForm().add(checkBox);
 
+        // Add checkbox label
         TextFragment checkBoxLabel = new TextFragment("I agree to the terms and conditions");
-        checkBoxLabel.setPosition(new Position(130, 555));
+        checkBoxLabel.setPosition(new Position(130, 605));
         page.getParagraphs().add(checkBoxLabel);
 
-        // Add an external link
-        TextFragment linkText = new TextFragment("\nClick here to visit our website");
+        // Add an accessible hyperlink
+        TextFragment linkText = new TextFragment("Visit our website");
         linkText.getTextState().setForegroundColor(Color.getBlue());
         linkText.setHyperlink(new WebHyperlink("https://www.bankwebsite.com"));
+
+        StructureElement linkElement = new StructureElement(taggedContent, StandardTags.Link);
+        linkElement.setText("Visit our website (opens in a new tab)");
+        taggedContent.getRootElement().appendChild(linkElement);
+
         page.getParagraphs().add(linkText);
 
-        // Add a footnote
-        TextFragment footnoteText = new TextFragment("\nNote: Please bring original documents for verification.");
-        footnoteText.getTextState().setFontSize(10);
-        page.getParagraphs().add(footnoteText);
-
-        // Save the template
-        pdfDocument.save("banking-form-template.pdf");
-        System.out.println("Template created successfully!");
+        // Save the WCAG 2.0 compliant template
+        pdfDocument.save("banking-form-template-tagged.pdf");
+        System.out.println("WCAG 2.0 Compliant Template Created Successfully!");
     }
 }
