@@ -1,27 +1,80 @@
 import com.aspose.pdf.*;
 
-public class FillCheckboxAndMakeReadOnly {
+public class ReadOnlyCheckbox {
     public static void main(String[] args) {
         // Load the PDF document
-        Document pdfDocument = new Document("input.pdf");
+        Document document = new Document("input.pdf");
 
-        // Get the form fields
-        com.aspose.pdf.forms.Field[] fields = pdfDocument.getForm().getFields();
+        // Get the first page
+        Page page = document.getPages().get_Item(1);
 
-        // Loop through fields to find checkboxes and set values
-        for (com.aspose.pdf.forms.Field field : fields) {
-            if (field instanceof com.aspose.pdf.forms.CheckBoxField) {
-                CheckBoxField checkBox = (CheckBoxField) field;
-                checkBox.setChecked(true); // Check the checkbox
-            }
-        }
+        // Create a checkbox field
+        RadioButtonField checkBox = new RadioButtonField(document);
+        checkBox.setPartialName("agree_terms");
 
-        // Flatten the form to make it read-only
-        pdfDocument.getForm().flatten();
+        // Create an option (appearance for checked state)
+        RadioButtonOptionField option = new RadioButtonOptionField(document);
+        option.setPage(page);
+        option.setWidth(15);
+        option.setHeight(15);
+        option.setCaption("I agree to terms");
+        option.setStyle(BoxStyle.Cross); // Style can be Cross, Check, etc.
 
-        // Save the modified PDF
-        pdfDocument.save("output.pdf");
+        // Set the checkbox to checked or unchecked
+        option.setChecked(true); // Set to false if unchecked
 
-        System.out.println("Checkboxes filled and form made read-only successfully.");
+        // Make it read-only
+        checkBox.setReadOnly(true);
+
+        // Add option to checkbox field
+        checkBox.add(option);
+
+        // Add field to the page
+        document.getForm().add(checkBox);
+
+        // Save the updated PDF
+        document.save("output.pdf");
+
+        System.out.println("Read-only checkbox added!");
+    }
+}
+import com.aspose.pdf.*;
+
+public class ReadOnlyCheckbox {
+    public static void main(String[] args) {
+        // Load the PDF document
+        Document document = new Document("input.pdf");
+
+        // Get the first page
+        Page page = document.getPages().get_Item(1);
+
+        // Create a checkbox field
+        RadioButtonField checkBox = new RadioButtonField(document);
+        checkBox.setPartialName("agree_terms");
+
+        // Create an option (appearance for checked state)
+        RadioButtonOptionField option = new RadioButtonOptionField(document);
+        option.setPage(page);
+        option.setWidth(15);
+        option.setHeight(15);
+        option.setCaption("I agree to terms");
+        option.setStyle(BoxStyle.Cross); // Style can be Cross, Check, etc.
+
+        // Set the checkbox to checked or unchecked
+        option.setChecked(true); // Set to false if unchecked
+
+        // Make it read-only
+        checkBox.setReadOnly(true);
+
+        // Add option to checkbox field
+        checkBox.add(option);
+
+        // Add field to the page
+        document.getForm().add(checkBox);
+
+        // Save the updated PDF
+        document.save("output.pdf");
+
+        System.out.println("Read-only checkbox added!");
     }
 }
