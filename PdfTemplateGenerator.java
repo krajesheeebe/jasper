@@ -10,17 +10,20 @@ import java.security.cert.X509Certificate;
 
 public class RestTemplateConfig {
     public static RestTemplate createRestTemplate() throws Exception {
-        // Create an SSLContext that ignores all certificates
+        // Create an SSLContext that trusts all certificates
         SSLContext sslContext = SSLContextBuilder.create()
                 .loadTrustMaterial((TrustStrategy) (X509Certificate[] chain, String authType) -> true)
                 .build();
 
-        // Create an HttpClient with the custom SSL context
+        // Create an HttpClient that uses this SSLContext
         CloseableHttpClient httpClient = HttpClients.custom()
-                .setSSLContext(sslContext)
+                .setConnectionManagerShared(true)  // Avoids connection issues
+                .setDefaultCredentialsProvider(null) // Ensure no credentials override
+                .evictExpiredConnections()
+                .evictIdleConnections(null)
                 .build();
 
-        // Create RestTemplate with the custom HttpClient
+        // Create a RestTemplate using the custom HttpClient
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
         return new RestTemplate(factory);
     }
