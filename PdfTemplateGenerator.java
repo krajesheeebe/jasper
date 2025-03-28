@@ -1,12 +1,14 @@
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
-import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
+import org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
+import org.apache.hc.core5.ssl.TrustStrategy;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import javax.net.ssl.SSLContext;
 import java.io.File;
+import java.io.FileInputStream;
 import java.security.KeyStore;
 
 public class RestTemplateConfig {
@@ -18,26 +20,36 @@ public class RestTemplateConfig {
         String truststorePath = "/path/to/truststore.jks"; // Replace with actual TrustStore path
         String truststorePassword = "your-truststore-password";
 
-        // Load KeyStore (Client Certs)
+        // Load KeyStore (Client Certificates)
         KeyStore keyStore = KeyStore.getInstance("JKS");
-        keyStore.load(new java.io.FileInputStream(new File(keystorePath)), keystorePassword.toCharArray());
+        try (FileInputStream keyStoreInput = new FileInputStream(new File(keystorePath))) {
+            keyStore.load(keyStoreInput, keystorePassword.toCharArray());
+        }
 
-        // Load TrustStore (CA Certs)
+        // Load TrustStore (CA Certificates)
         KeyStore trustStore = KeyStore.getInstance("JKS");
-        trustStore.load(new java.io.FileInputStream(new File(truststorePath)), truststorePassword.toCharArray());
+        try (FileInputStream trustStoreInput = new FileInputStream(new File(truststorePath))) {
+            trustStore.load(trustStoreInput, truststorePassword.toCharArray());
+        }
 
-        // Create SSL Context using both KeyStore and TrustStore
+        // Create SSL Context
         SSLContext sslContext = SSLContextBuilder.create()
-                .loadKeyMaterial(keyStore, keystorePassword.toCharArray()) // Client certificates
-                .loadTrustMaterial(trustStore, null) // Truststore for verifying server certs
+                .loadKeyMaterial(keyStore, keystorePassword.toCharArray()) // Client authentication
+                .loadTrustMaterial(trustStore, (TrustStrategy) (chain, authType) -> true) // Truststore for server certs
                 .build();
 
-        // Create HTTP Client with SSL
+        // Create Connection Manager with SSL
+        PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager();
+        connManager.setDefaultSocketConfig(org.apache.hc.core5.util.Timeout.ofMinutes(1));
+
+        // Create HttpClient
         CloseableHttpClient httpClient = HttpClients.custom()
-                .setSSLSocketFactory(new SSLConnectionSocketFactory(sslContext))
+                .setConnectionManager(connManager)
+                .setConnectionManagerShared(true)
+                .setSSLContext(sslContext)
                 .build();
 
-        // Create RestTemplate with custom SSL
+        // Create RestTemplate
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
         return new RestTemplate(factory);
     }
