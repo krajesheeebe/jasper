@@ -11,10 +11,10 @@ import java.security.KeyStore;
 public class RestTemplateConfig {
 
     public static RestTemplate createRestTemplate() throws Exception {
-        String keystorePath = "/path/to/keystore.jks"; // 🔹 Replace with your JKS path
+        String keystorePath = "/path/to/keystore.jks"; // 🔹 Replace with actual JKS path
         String keystorePassword = "your-keystore-password";
 
-        String truststorePath = "/path/to/truststore.jks"; // 🔹 Replace with your TrustStore path
+        String truststorePath = "/path/to/truststore.jks"; // 🔹 Replace with actual TrustStore path
         String truststorePassword = "your-truststore-password";
 
         // Load Keystore (Client Certificates)
@@ -40,7 +40,7 @@ public class RestTemplateConfig {
                 .setSSLContext(sslContext)
                 .build();
 
-        // Create RestTemplate with custom HttpClient
+        // ✅ Use HttpComponentsClientHttpRequestFactory(HttpClient5)
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
         return new RestTemplate(factory);
     }
