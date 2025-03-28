@@ -1,80 +1,37 @@
-import com.aspose.pdf.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
+import javax.net.ssl.*;
+import java.security.cert.X509Certificate;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
 
-public class ReadOnlyCheckbox {
-    public static void main(String[] args) {
-        // Load the PDF document
-        Document document = new Document("input.pdf");
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-        // Get the first page
-        Page page = document.getPages().get_Item(1);
+@Configuration
+public class RestTemplateConfig {
 
-        // Create a checkbox field
-        RadioButtonField checkBox = new RadioButtonField(document);
-        checkBox.setPartialName("agree_terms");
+    @Bean
+    public RestTemplate restTemplate() throws Exception {
+        // Trust all certificates
+        SSLContext sslContext = SSLContext.getInstance("TLS");
+        sslContext.init(null, new TrustManager[]{new X509TrustManager() {
+            public X509Certificate[] getAcceptedIssuers() { return null; }
+            public void checkClientTrusted(X509Certificate[] certs, String authType) { }
+            public void checkServerTrusted(X509Certificate[] certs, String authType) { }
+        }}, new java.security.SecureRandom());
 
-        // Create an option (appearance for checked state)
-        RadioButtonOptionField option = new RadioButtonOptionField(document);
-        option.setPage(page);
-        option.setWidth(15);
-        option.setHeight(15);
-        option.setCaption("I agree to terms");
-        option.setStyle(BoxStyle.Cross); // Style can be Cross, Check, etc.
+        // Allow all hosts
+        HostnameVerifier allowAllHosts = (hostname, session) -> true;
 
-        // Set the checkbox to checked or unchecked
-        option.setChecked(true); // Set to false if unchecked
+        // Create HttpClient that ignores SSL verification
+        CloseableHttpClient httpClient = HttpClients.custom()
+                .setSSLContext(sslContext)
+                .setSSLHostnameVerifier(allowAllHosts)
+                .build();
 
-        // Make it read-only
-        checkBox.setReadOnly(true);
-
-        // Add option to checkbox field
-        checkBox.add(option);
-
-        // Add field to the page
-        document.getForm().add(checkBox);
-
-        // Save the updated PDF
-        document.save("output.pdf");
-
-        System.out.println("Read-only checkbox added!");
-    }
-}
-import com.aspose.pdf.*;
-
-public class ReadOnlyCheckbox {
-    public static void main(String[] args) {
-        // Load the PDF document
-        Document document = new Document("input.pdf");
-
-        // Get the first page
-        Page page = document.getPages().get_Item(1);
-
-        // Create a checkbox field
-        RadioButtonField checkBox = new RadioButtonField(document);
-        checkBox.setPartialName("agree_terms");
-
-        // Create an option (appearance for checked state)
-        RadioButtonOptionField option = new RadioButtonOptionField(document);
-        option.setPage(page);
-        option.setWidth(15);
-        option.setHeight(15);
-        option.setCaption("I agree to terms");
-        option.setStyle(BoxStyle.Cross); // Style can be Cross, Check, etc.
-
-        // Set the checkbox to checked or unchecked
-        option.setChecked(true); // Set to false if unchecked
-
-        // Make it read-only
-        checkBox.setReadOnly(true);
-
-        // Add option to checkbox field
-        checkBox.add(option);
-
-        // Add field to the page
-        document.getForm().add(checkBox);
-
-        // Save the updated PDF
-        document.save("output.pdf");
-
-        System.out.println("Read-only checkbox added!");
+        // Create RestTemplate with custom request factory
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
+        return new RestTemplate(factory);
     }
 }
