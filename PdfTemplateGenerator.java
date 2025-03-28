@@ -1,36 +1,26 @@
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.ssl.SSLContextBuilder;
+import org.apache.hc.core5.ssl.TrustStrategy;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
-import javax.net.ssl.*;
+
+import javax.net.ssl.SSLContext;
 import java.security.cert.X509Certificate;
-import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
 public class RestTemplateConfig {
-
-    @Bean
-    public RestTemplate restTemplate() throws Exception {
-        // Trust all certificates
-        SSLContext sslContext = SSLContext.getInstance("TLS");
-        sslContext.init(null, new TrustManager[]{new X509TrustManager() {
-            public X509Certificate[] getAcceptedIssuers() { return null; }
-            public void checkClientTrusted(X509Certificate[] certs, String authType) { }
-            public void checkServerTrusted(X509Certificate[] certs, String authType) { }
-        }}, new java.security.SecureRandom());
-
-        // Allow all hosts
-        HostnameVerifier allowAllHosts = (hostname, session) -> true;
-
-        // Create HttpClient that ignores SSL verification
-        CloseableHttpClient httpClient = HttpClients.custom()
-                .setSSLContext(sslContext)
-                .setSSLHostnameVerifier(allowAllHosts)
+    public static RestTemplate createRestTemplate() throws Exception {
+        // Create an SSLContext that ignores all certificates
+        SSLContext sslContext = SSLContextBuilder.create()
+                .loadTrustMaterial((TrustStrategy) (X509Certificate[] chain, String authType) -> true)
                 .build();
 
-        // Create RestTemplate with custom request factory
+        // Create an HttpClient with the custom SSL context
+        CloseableHttpClient httpClient = HttpClients.custom()
+                .setSSLContext(sslContext)
+                .build();
+
+        // Create RestTemplate with the custom HttpClient
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
         return new RestTemplate(factory);
     }
