@@ -1,29 +1,43 @@
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.client5.http.ssl.SSLConnectionSocketFactory;
 import org.apache.hc.core5.ssl.SSLContextBuilder;
-import org.apache.hc.core5.ssl.TrustStrategy;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
 import javax.net.ssl.SSLContext;
-import java.security.cert.X509Certificate;
+import java.io.File;
+import java.security.KeyStore;
 
 public class RestTemplateConfig {
+    
     public static RestTemplate createRestTemplate() throws Exception {
-        // Create an SSLContext that trusts all certificates
+        String keystorePath = "/path/to/keystore.jks";  // Replace with actual JKS path
+        String keystorePassword = "your-keystore-password";
+
+        String truststorePath = "/path/to/truststore.jks"; // Replace with actual TrustStore path
+        String truststorePassword = "your-truststore-password";
+
+        // Load KeyStore (Client Certs)
+        KeyStore keyStore = KeyStore.getInstance("JKS");
+        keyStore.load(new java.io.FileInputStream(new File(keystorePath)), keystorePassword.toCharArray());
+
+        // Load TrustStore (CA Certs)
+        KeyStore trustStore = KeyStore.getInstance("JKS");
+        trustStore.load(new java.io.FileInputStream(new File(truststorePath)), truststorePassword.toCharArray());
+
+        // Create SSL Context using both KeyStore and TrustStore
         SSLContext sslContext = SSLContextBuilder.create()
-                .loadTrustMaterial((TrustStrategy) (X509Certificate[] chain, String authType) -> true)
+                .loadKeyMaterial(keyStore, keystorePassword.toCharArray()) // Client certificates
+                .loadTrustMaterial(trustStore, null) // Truststore for verifying server certs
                 .build();
 
-        // Create an HttpClient that uses this SSLContext
+        // Create HTTP Client with SSL
         CloseableHttpClient httpClient = HttpClients.custom()
-                .setConnectionManagerShared(true)  // Avoids connection issues
-                .setDefaultCredentialsProvider(null) // Ensure no credentials override
-                .evictExpiredConnections()
-                .evictIdleConnections(null)
+                .setSSLSocketFactory(new SSLConnectionSocketFactory(sslContext))
                 .build();
 
-        // Create a RestTemplate using the custom HttpClient
+        // Create RestTemplate with custom SSL
         HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory(httpClient);
         return new RestTemplate(factory);
     }
