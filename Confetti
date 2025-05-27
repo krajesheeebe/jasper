@@ -1,0 +1,67 @@
+// src/app/services/confetti.service.ts
+import { Injectable } from '@angular/core';
+import confetti from 'canvas-confetti';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ConfettiService {
+  launchConfetti() {
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { y: 0.6 }
+    });
+  }
+}
+
+
+
+// src/app/components/success/success.component.ts
+import { Component } from '@angular/core';
+import { ConfettiService } from '../../services/confetti.service';
+
+@Component({
+  selector: 'app-success',
+  template: `
+    <button (click)="celebrate()">Celebrate!</button>
+  `,
+  styles: [`button { font-size: 18px; padding: 10px; }`]
+})
+export class SuccessComponent {
+  constructor(private confettiService: ConfettiService) {}
+
+  celebrate() {
+    this.confettiService.launchConfetti();
+  }
+}
+
+
+
+
+confetti({
+  angle: 60,
+  spread: 100,
+  particleCount: 150,
+  origin: { x: 0 },
+});
+confetti({
+  angle: 120,
+  spread: 100,
+  particleCount: 150,
+  origin: { x: 1 },
+});
+
+
+
+
+
+<canvas id="confetti-canvas"></canvas>
+
+
+
+
+confetti.create(document.getElementById('confetti-canvas') as HTMLCanvasElement, {
+  resize: true,
+  useWorker: true
+})({ particleCount: 200, spread: 160 });
