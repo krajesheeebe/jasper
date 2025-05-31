@@ -106,3 +106,151 @@ mission
 <div style="max-width:640px"><div style="position:relative;padding-bottom:61.875%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/2645271/sp/264527100/embedIframeJs/uiconf_id/44939581/partner_id/2645271?iframeembed=true&playerId=kaltura_player&entry_id=1_3q1tg42y&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_db0d7lym" width="640" height="396" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Citi&#039;s Mission and Value Proposition" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe></div></div>
 banking on tomorrow
 <div style="max-width:640px"><div style="position:relative;padding-bottom:61.875%"><iframe id="kaltura_player" src="https://cdnapisec.kaltura.com/p/2645271/sp/264527100/embedIframeJs/uiconf_id/44939581/partner_id/2645271?iframeembed=true&playerId=kaltura_player&entry_id=1_olnlsg93&flashvars[streamerType]=auto&amp;flashvars[localizationCode]=en&amp;flashvars[sideBarContainer.plugin]=true&amp;flashvars[sideBarContainer.position]=left&amp;flashvars[sideBarContainer.clickToClose]=true&amp;flashvars[chapters.plugin]=true&amp;flashvars[chapters.layout]=vertical&amp;flashvars[chapters.thumbnailRotator]=false&amp;flashvars[streamSelector.plugin]=true&amp;flashvars[EmbedPlayer.SpinnerTarget]=videoHolder&amp;flashvars[dualScreen.plugin]=true&amp;flashvars[hotspots.plugin]=1&amp;flashvars[Kaltura.addCrossoriginToIframe]=true&amp;&wid=1_khszujpn" width="640" height="396" allowfullscreen webkitallowfullscreen mozAllowFullScreen allow="autoplay *; fullscreen *; encrypted-media *" sandbox="allow-downloads allow-forms allow-same-origin allow-scripts allow-top-navigation allow-pointer-lock allow-popups allow-modals allow-orientation-lock allow-popups-to-escape-sandbox allow-presentation allow-top-navigation-by-user-activation" frameborder="0" title="Banking on Tomorrow" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0"></iframe></div></div>
+
+
+
+
+[
+  {
+    "question": "What is social engineering in the context of cybersecurity?",
+    "options": [
+      "Building secure digital platforms",
+      "Manipulating people into divulging confidential information",
+      "Designing software to enhance social interaction",
+      "Using social media for security awareness campaigns"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Impressive! You've resisted the mind tricks of the shadow hackers. Fuel unlocked!",
+    "incorrectReply": "The sentinels shake their heads... Manipulation isn’t always digital. Watch out!"
+  },
+  {
+    "question": "Which of the following is NOT a good practice for password security?",
+    "options": [
+      "Using a combination of uppercase and lowercase letters, numbers, and symbols",
+      "Using the same password for multiple accounts",
+      "Changing your password regularly",
+      "Using a password manager"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Correct! Using one password across realms is a rookie mistake. You’re wiser than that.",
+    "incorrectReply": "Hmm… your shield has a crack. Reusing passwords makes you an easy target in this galaxy."
+  },
+  {
+    "question": "What is phishing?",
+    "options": [
+      "A type of malware that encrypts your files",
+      "A fraudulent attempt to obtain sensitive information by disguising oneself as a trustworthy entity",
+      "A software program that monitors your online activity",
+      "A type of virus that infects your computer"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Bullseye! You've spotted the bait before the trap closed. You're clear for takeoff.",
+    "incorrectReply": "The trap was set, and you bit. Watch out—phishing is all about deception."
+  },
+  {
+    "question": "Which action should you take if you receive a suspicious email asking for your password?",
+    "options": [
+      "Reply to the email and ask for more information",
+      "Click the link in the email to verify your account",
+      "Report the email to your security team and delete it",
+      "Forward the email to your colleagues"
+    ],
+    "correctAnswer": 2,
+    "correctReply": "Spot on! Reporting threats keeps the whole fleet safe. You're security savvy!",
+    "incorrectReply": "Ouch! The fleet can’t risk you spreading this further. Be vigilant with such messages."
+  },
+  {
+    "question": "What is the best way to protect your device from malware?",
+    "options": [
+      "Turn your computer when not in use",
+      "Keep your software up to date and use antivirus software",
+      "Only download files from trusted sources",
+      "Buy devices from known brands"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Shield activated! Your system's now protected by cosmic-grade defenses.",
+    "incorrectReply": "That’s not enough to stop alien malware. Keep your systems updated and scanned."
+  }
+]
+
+
+[
+  {
+    "question": "What is two-factor authentication?",
+    "options": [
+      "A type of password manager",
+      "A security process that requires two different authentication factors to verify a user's identity",
+      "A type of encryption algorithm",
+      "A method for backing up your data"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Dual shields activated! Two-factor is your personal force field against intruders.",
+    "incorrectReply": "Warning! Single-layer security is easily breached in deep space. Reinforce with two-factor authentication."
+  },
+  {
+    "question": "Which of the following is an example of Personally Identifiable Information (PII)?",
+    "options": [
+      "Your favorite color",
+      "Your social security number",
+      "Your base name",
+      "Your favorite movie"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Bingo! That’s top-level clearance info. You’ve got the eye of a security officer.",
+    "incorrectReply": "Incorrect. Sentinels note: preferences aren’t personal—identifiers like SSN are."
+  },
+  {
+    "question": "What should you do if you suspect your computer has been infected with malware?",
+    "options": [
+      "Continue using your computer as normal",
+      "Disconnect from the network and report it to your security team",
+      "Restart your computer",
+      "Install more RAM"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Excellent! You’ve contained the breach like a seasoned space ranger.",
+    "incorrectReply": "Uh-oh. That lets the infection spread faster than a solar flare. Disconnect and report immediately!"
+  },
+  {
+    "question": "What is the purpose of a firewall?",
+    "options": [
+      "To protect your computer from physical damage",
+      "To prevent unauthorized access to or from a private network",
+      "To speed up your internet connection",
+      "To store your passwords securely"
+    ],
+    "correctAnswer": 1,
+    "correctReply": "Well done! Your firewall is now guarding your systems like a space gate.",
+    "incorrectReply": "Incorrect. Passwords aren’t stored in firewalls. They’re your perimeter defense, not a vault!"
+  },
+  {
+    "question": "Which of these is NOT a type of cyber attack?",
+    "options": [
+      "Phishing",
+      "Malware",
+      "Denial-of-service attack",
+      "Interstellar-wormhole"
+    ],
+    "correctAnswer": 3,
+    "correctReply": "Haha! Caught the joke, did you? You're too sharp for imaginary threats.",
+    "incorrectReply": "Oh dear... looks like you mistook sci-fi for cybercrime. Stay focused, cadet!"
+  }
+]
+{
+  "question": "Which of these is NOT a type of cyber attack?",
+  "options": [
+    "Phishing",
+    "Malware",
+    "Denial-of-service attack",
+    "Interstellar-wormhole"
+  ],
+  "correctAnswer": 3,
+  "correctReply": "Correct. That threat doesn’t exist in any known cyber galaxy. Stay vigilant out there.",
+  "incorrectReply": "Negative. That one isn’t part of any real-world threat arsenal. Brush up your intel, cadet."
+}
+
+Passing Score – Enough Rocket Fuel Collected
+"Mission Success! You’ve gathered all the rocket fuel canisters needed to power up your ship. The sentinels salute your sharp mind. Strap in, cadet — the stars await your next journey!"
+
+❌ Failing Score – Oxygen Depleted, Mission Failed
+"Oxygen Levels Critical! You’ve run out of breathable air before securing enough fuel. The sentinels are recalling your pod. Return to the Command Center to review your mission brief and try again. Knowledge is your lifeline."
