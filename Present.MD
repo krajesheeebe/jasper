@@ -1,14 +1,13 @@
-Here’s your refined 5-minute presentation script for the **Mission Citiverse** demo:
 
 ---
 
-**\[Slide/Title: Team Introduction]**
+**\[Title: Team Introduction]**
 Good \[morning/afternoon], everyone.
 We are **Team Citinauts**, and we’re excited to present our solution — **Mission Citiverse**.
 
 ---
 
-**\[Slide: The Problem]**
+**\[The Problem]**
 As we all know, Citi’s current new hire onboarding process relies heavily on traditional classroom sessions — filled with presentations and lengthy documents.
 This results in:
 
@@ -21,7 +20,7 @@ Clearly, it's time for a change.
 
 ---
 
-**\[Slide: The Solution]**
+**\[The Solution]**
 Introducing **Mission Citiverse** — a **space-themed gamified onboarding platform**.
 
 New hires become **Citinauts** — they create avatars and journey through space, hopping across different planets.
@@ -30,7 +29,7 @@ They complete challenges, collect rewards, and unlock achievements, ultimately a
 
 ---
 
-**\[Slide: Application Demo – Flow Overview]**
+**\[Application Demo – Flow Overview]**
 Let’s take you through the flow of our application.
 
 It all begins with **preboarding** — once a new hire has accepted their offer and has a confirmed joining date.
@@ -38,7 +37,7 @@ The **HR team** launches the Mission Citiverse app to get started.
 
 ---
 
-**\[Slide: Login Page]**
+**\[Login Page]**
 We start with a **common login screen** for both HR and new hires.
 You’ll notice:
 
@@ -55,7 +54,7 @@ This can also be enhanced to validate **Citi AZ LDAP roles** — ensuring only a
 
 ---
 
-**\[Slide: HR Welcome Screen]**
+**\[HR Welcome Screen]**
 Upon successful login, the HR is welcomed with the message:
 **"Welcome to Mission Citiverse Admin"**.
 
@@ -69,7 +68,7 @@ The dashboard has three sections:
 
 ---
 
-**\[Slide: Preboarding New Hires]**
+**\[Preboarding New Hires]**
 Now, when the HR clicks **Preboard**, they’re taken to a form.
 
 Here, they fill in:
@@ -97,7 +96,7 @@ On the right, the **Recently Preboarded** section updates in real-time — showi
 
 ---
 
-**\[Slide: Bulk Preboarding]**
+**\[Bulk Preboarding]**
 To simplify onboarding for larger batches, we also support **bulk preboarding**.
 
 Instead of manually entering each new hire's details, the HR can **upload an Excel file** containing all the necessary data.
@@ -110,7 +109,7 @@ As you can see here — once the upload is complete and the button is clicked �
 
 ---
 
-**\[Slide: Welcome Email]**
+**\[Welcome Email]**
 After successful preboarding, each new hire receives a **welcome email**.
 
 It includes:
@@ -126,7 +125,7 @@ We can also layer in a **second-level verification**, such as PAN number or date
 
 ---
 
-**\[Slide: New Hire Experience – Login & Countdown]**
+**\[New Hire Experience – Login & Countdown]**
 Let’s now shift to the **new hire journey**.
 
 When the new hire clicks **Launch Mission**, they are taken to the **login screen**.
@@ -141,7 +140,7 @@ A **“Start Mission” button** then appears for them to proceed.
 
 ---
 
-**\[Slide: Registration & Avatar Creation]**
+**\[Registration & Avatar Creation]**
 After clicking **Start Mission**, they are taken to the **registration screen** —
 which digitally replaces the traditional manual attendance process.
 
@@ -156,7 +155,7 @@ Once done, they **confirm their registration** and click **Launch**.
 
 ---
 
-**\[Slide: Mission Control – Dashboard View]**
+**\[Mission Control – Dashboard View]**
 Now, they land on the **Mission Control screen** —
 the central dashboard showing all the **planets/modules** in their journey toward **Planet Citi HQ**.
 
@@ -172,7 +171,7 @@ This gives the new hire a clear visual path of their onboarding.
 
 ---
 
-**\[Slide: Planet Modules – Custom Learning Content]**
+**\[Planet Modules – Custom Learning Content]**
 Clicking a planet takes the user to the **module screen**.
 
 Each planet can contain multiple **submodules**.
@@ -190,7 +189,7 @@ It’s similar to what you'd expect from a Learning Management System (LMS), but
 
 ---
 
-**\[Slide: Interactive Module Example – Planet Visio]**
+**\[Interactive Module Example – Planet Visio]**
 For example, **Planet Visio** contains modules like:
 
 * **Citi Overview**
