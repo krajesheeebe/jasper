@@ -1,0 +1,96 @@
+Great — thanks, that gives me enough detail to craft polished, professional answers for every field in the E3 application form. I’ll write them in a clear, concise style, showing both your **technical expertise** and your **growth/leadership mindset**.
+
+Here’s a full draft you can use (you can copy–paste directly into the form and tweak if needed):
+
+---
+
+### **Describe your current role**
+
+Full Stack Developer (Java Spring Boot + Angular) working on the US Retail Account Opening application (*Avoka*) and a suite of servicing microapps (*US Retail Servicing Platform*).
+
+---
+
+### **Describe your responsibilities in your current role**
+
+I design, develop, and maintain Java Spring Boot microservices and Angular-based UI microapps, integrating with MongoDB and OracleDB backends. My responsibilities include:
+
+* Participating in grooming sessions to understand business requirements and preparing high-level design solutions.
+* Developing, unit testing, and deploying microservices and UI components.
+* Providing production support to ensure application stability and quick resolution of incidents.
+* Conducting code reviews to ensure code quality, adherence to best practices, and maintainability.
+* Collaborating across teams to deliver end-to-end features.
+
+---
+
+### **What do you, personally, hope to get out of this program?**
+
+Through E3, I hope to deepen my technical expertise in advanced engineering practices, gain exposure to emerging technologies (especially AI/automation), and strengthen my leadership skills in promoting engineering excellence. I aspire to grow as a thought leader who can both design robust technical solutions and mentor peers, ultimately driving innovation and efficiency across the organization.
+
+---
+
+### **Document your technical/professional qualifications related to your current role**
+
+* Oracle Certified Java Developer
+* Completed week-long training on “Introduction to Python”
+
+---
+
+### **Describe technical assignment(s) you have completed in the last year (2–3 paragraphs, focusing on your own contributions)**
+
+One of my key contributions in the past year was the design and development of a new microservice to generate ADA-compliant PDFs and enable an e-signing process, consumed by three different applications. I was responsible for the end-to-end design, implementation, and integration of this service, ensuring scalability, compliance with accessibility standards, and seamless user experience.
+
+In addition, I developed and enhanced multiple microapps within the US Retail Servicing Platform, working on both the backend and Angular UI. This involved implementing new features, improving performance, and collaborating with business partners to align technical solutions with business objectives. My contributions directly improved customer onboarding and servicing efficiency.
+
+---
+
+### **Describe your efforts to promote and advance a culture of engineering excellence across Citi.**
+
+I actively promote engineering excellence by mentoring junior teammates, helping them resolve technical issues, and guiding them on writing clean, maintainable code. I contribute to code reviews with a focus on improving quality, performance, and adherence to best practices. I also encourage adoption of modern tools and frameworks that enhance productivity and maintainability.
+
+---
+
+### **Elaborate how you anticipate your contributions evolving or changing following your graduation from E3**
+
+Post-graduation, I anticipate taking a stronger role in driving adoption of AI and automation across engineering teams to improve productivity, quality, and speed of delivery. I also expect to take on greater leadership responsibilities in mentoring and knowledge sharing, enabling teams to embrace modern engineering practices at scale. My goal is to influence not only project-level outcomes but also organization-wide engineering standards.
+
+---
+
+### **Describe how your own development philosophy aligns with Citi’s Developer Manifesto, and how do you apply the same in your current work.**
+
+My development philosophy emphasizes **clean code, continuous learning, and collaboration**, which aligns strongly with Citi’s Developer Manifesto. I apply these values by:
+
+* Writing modular, testable, and maintainable code.
+* Continuously upskilling through trainings, hands-on experimentation, and adopting best practices.
+* Reviewing code with a focus on quality and knowledge sharing.
+* Keeping end-user experience at the center of design and implementation decisions.
+
+---
+
+### **Describe your experience with Citi’s strategic AI tools viz. Citi Squad, Stylus, and GitHub Copilot, focusing on how you have leveraged these AI capabilities to enhance your productivity/code quality.**
+
+I have leveraged GitHub Copilot extensively to accelerate code development and improve unit test coverage, reducing turnaround time while maintaining quality. I also use Stylus Workspaces for issue analysis, exploring data and system dependencies to arrive at effective solutions. These tools have helped me enhance productivity, improve problem-solving efficiency, and deliver higher-quality outcomes in less time.
+
+---
+
+### **Select the type of programming test you would prefer to undergo to ascertain your ability to solve problems using code.**
+
+Java (Primary), with interest in learning and applying Python in future projects.
+
+---
+
+### **Please provide SOEID of an E3 / E4 Alumni / other senior technologist who can attest your professional work.**
+
+* NR48742 – Nandagopal Radhakrishnan (Current Reporting Manager)
+* SK15227 – Selvakumar K (Previous Teammate)
+
+---
+
+### **Have you informed your Manager about your application to the E3 Program?**
+
+Yes.
+
+---
+
+✅ This version highlights your **technical strengths, leadership mindset, and growth aspirations** — exactly what the E3 panel will be looking for.
+
+Would you like me to also **shrink some answers into tighter, high-impact versions** (in case there’s a word/character limit per field)?
